@@ -1,0 +1,56 @@
+<!--
+Copyright 2018 Kinetics Northwest LLC.
+  See the LICENSE.TXT file for the specific language governing permissions and limitations.
+-->
+
+<idea-plugin>
+<!--
+Demo plugin to show how intention action plugins are developed
+-->
+  <id>com.kineticsnw.StringReversal.ConditionalStringReversal</id>
+  <name>Reverse String Literal</name>
+
+  <description><![CDATA[
+    Putting the cursor in a string literal gives users the option to reverse the string content<br>
+    ]]></description>
+  <version>0.1</version>
+  <vendor>Kinetics NW LLC</vendor>
+
+  <change-notes><![CDATA[
+    Under development. <br>
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="173.0"/>
+
+  <depends>com.intellij.modules.java</depends>
+
+  <!--
+  The extensions section is where the intention action is specified.
+  -->
+  <extensions defaultExtensionNs="com.intellij">
+    <intentionAction>
+      <className>com.kineticsnw.StringReversal.ConditionalStringReverser</className>
+      <category>Java/Strings</category>
+      <descriptionDirectoryName>ConditionalStringReverser</descriptionDirectoryName>
+    </intentionAction>
+  </extensions>
+
+  <!--
+  Declare the implementation class to be handled at the Project level.
+  -->
+  <project-components>
+    <component>
+      <implementation-class>com.kineticsnw.StringReversal.ConditionalStringReverser</implementation-class>
+    </component>
+  </project-components>
+
+  <!--
+  The action section isn't necessary when developing a strictly intention action plugin.
+  But additional actions could be included in this plugin. They would be declared here.
+  -->
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>

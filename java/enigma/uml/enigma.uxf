@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>40</x>
+      <y>310</y>
+      <w>250</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Utils
+--
++Config Enigma
++Random Msg Prefix Generator
++Generate Possible Msg Prefixes
++Create Chain Lookup DB
++Alpha Add
++Alpha Subtract
+bg=white
+fg=#8A2BE2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>330</x>
+      <y>310</y>
+      <w>300</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Crack Module
+--
++Analyze Prefix Chain Patterns
++Determine Likely Chain-Based Config
++Attempt Decrypt Using Configs
+bg=white
+fg=#FF8C00</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>100</x>
+      <y>190</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Engine
+--
++Rotor
++Encrypt
++Decrypt
+bg=white
+fg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>400</x>
+      <y>190</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Text Handler
+--
+/+Plain Text to Clear Text Format/
++Plain to Clear Text From File
+/+IOInterpreter/
++IOForFiles
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>240</x>
+      <y>30</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Enigma
+--
++Main
+bg=white
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>70</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>70</y>
+      <w>90</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>fg=black</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>70</y>
+      <w>30</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>70</y>
+      <w>50</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;240.0</additional_attributes>
+  </element>
+</diagram>

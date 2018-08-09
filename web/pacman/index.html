@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PacMan</title>	
+	<style>
+		/* All of our CSS code goes here... */
+
+        * {
+            outline: 1px dotted purple;
+        }
+
+        .wall {
+			width: 50px;
+			height: 50px;
+			background-image: url('wall.png');
+			display: inline-block;
+		}
+		.coin {
+			width: 50px;
+			height: 50px;
+			background-image: url('coin.png');
+			display: inline-block;
+		}
+		.ground {
+			width: 50px;
+			height: 50px;
+			background-image: url('bg.png');
+			display: inline-block;
+		}
+		.ghost {
+			width: 50px;
+			height: 50px;
+			background-image: url('ghost1.png');
+			display: inline-block;
+		}
+		.pacman {
+            width: 50px;
+            height: 50px;
+			background-image: url('pacman.png');
+            display: inline-block;
+		}
+
+        div {
+			line-height: 0px;
+		}
+
+
+		/* End of CSS */
+	</style>
+
+
+
+</head>
+<body>
+	<!-- All of our HTML code goes here... -->
+	
+	<div id='world'>
+
+    </div>
+
+	<!-- End of HTML-->
+</body>
+<script>
+	// All of our JavaScript code goes here... 
+
+    // define constants to describe tiles
+	// 1 => <div class='wall'></div>
+    const wall = 1;
+	// 2 => <div class='coin'></div>
+    const coin = 2;
+	// 3 => <div class='ground'></div>
+    const gnd = 3;
+	// 4 => <div class='ghost'></div>
+    const ghost = 4;
+	// 5 => <div class='pacman'></div>
+    const pac =  5;
+
+    // Define the sound effects
+    var pacMoveSnd = new Audio('pacman_chomp.wav');
+    var pacBeginSnd = new Audio('pacman_beginning.wav');
+    var pacDieSnd = new Audio('pacman_death.wav');
+    var pacChompSnd = new Audio('pacman_eatfruit.wav');
+
+    // Define the map of the pacman world. Y increases down the screen, and
+    // x increases to the screen right
+    map = [
+		[wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall],
+		[wall,coin,coin,coin,coin,coin,wall,coin,coin,coin,coin,coin,wall],
+		[wall,coin,wall,wall,wall,coin,wall,coin,wall,wall,wall,coin,wall],
+		[wall,coin,wall,coin,coin,coin,coin,coin,coin,coin,wall,coin,wall],
+		[wall,coin,coin,coin,wall,wall, pac,wall,wall,coin,coin,coin,wall],
+		[wall,coin,wall,coin,coin,coin,coin,coin,coin,coin,wall,coin,wall],
+		[wall,coin,wall,wall,coin,coin,wall,coin,coin,wall,wall,coin,wall],
+		[wall,coin,coin,coin,coin,coin,wall,coin,coin,coin,coin,coin,wall],
+		[wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall]
+	]
+
+    // This structure maintains the location of the pacman on the map.
+    pacmanPos = {
+        x: 0,
+        y: 0
+    }
+
+    // This function iterates the initial definition of the map and
+    // initializes pacmanPos to ensure the two start in sync.
+    function findPac() {
+        var y = 0;
+        var foundPac = false;
+        do {
+            var x = 0;
+            do {
+                foundPac = (map[y][x] == pac);
+                //console.log(foundPac);
+                if (foundPac){
+                    pacmanPos.y = y;
+                    pacmanPos.x = x;
+                } else {
+                    x+=1;
+                }
+            } while ((!foundPac) && (x<map[y].length));
+            y+=1;
+        } while ((!foundPac) && (y<map.length));
+    }
+
+
+    // This function iterates over the map, L to R, top to bottom, adding
+    // div tags corresponding to images that define the pacman world.
+	function drawWorld(){
+        // Target HTML div tag to receive all the div assets during redraw
+        var el = document.getElementById('world');
+		el.innerHTML = '';
+		for(var y = 0; y < map.length ; y = y + 1) {
+			for(var x = 0; x < map[y].length ; x = x + 1) {
+			    switch (map[y][x]) {
+                    case wall:
+                        el.innerHTML += "<div class='wall'></div>";
+                        break;
+                    case coin:
+                        el.innerHTML += "<div class='coin'></div>";
+                        break;
+                    case gnd:
+                        el.innerHTML += "<div class='ground'></div>";
+                        break;
+                    case ghost:
+                        el.innerHTML += "<div class='ghost'></div>";
+                        break;
+                    case pac:
+                        el.innerHTML += "<div class='pacman'></div>";
+                        break;
+                    default:
+                        break;
+                }
+			}
+			// Add a break at the end of each row of the map
+			el.innerHTML += "<br>";
+		}
+	}
+
+
+    // This function moves pacman on the playing field. by assigning the
+    // pacman code to the new location in the game map.
+    // Requests to move through walls are ignored
+    // Plays corresponding audio effect depending whether pacman is
+    // traversing ground or eating a coin.
+    function move(deltaY, deltaX) {
+        if ( map[pacmanPos.y+deltaY][pacmanPos.x+deltaX] !== wall){
+            // Play sound effect - is next loc coin?
+            if (map[pacmanPos.y+deltaY][pacmanPos.x+deltaX] == coin) {
+                pacChompSnd.play();
+            } else {
+                // just an empty square
+                pacMoveSnd.play()
+            }
+            // Set the existing pacman location to display ground
+            map[pacmanPos.y][pacmanPos.x] = gnd;
+            // Update the pacman position to the new location in the map
+            pacmanPos.y = pacmanPos.y + deltaY;
+            pacmanPos.x = pacmanPos.x + deltaX;
+            // Set the map to show a pacman at this location.
+            map[pacmanPos.y][pacmanPos.x] = pac;
+        }
+    }
+
+
+    // Start the game
+    findPac();
+    drawWorld();
+    pacBeginSnd.play();
+
+	document.onkeydown = function(event){
+        //console.log(event);
+        const keyPressed = event.keyCode;
+        const leftArrow = 37;
+        const upArrow = 38;
+        const rightArrow = 39;
+        const downArrow = 40;
+        const qKey = 81;
+        var posChange = 0;
+        switch(keyPressed) {
+            case leftArrow:  // Move Left
+            case upArrow:    // Move UP
+                posChange = -1;
+                break;
+            case rightArrow:  // Move Right
+            case downArrow:   // Move Down
+                posChange = 1;
+                break;
+            default:
+                // Don't move
+                posChange = 0;
+        }
+
+        switch (keyPressed) {
+            case leftArrow:        // Move left or right & draw world
+            case rightArrow:
+                move(0, posChange);
+                drawWorld();
+                break;
+            case upArrow:        // Move up or down & draw world
+            case downArrow:
+                move(posChange, 0);
+                drawWorld();
+                break;
+            case qKey:        // End game (TBD)
+                pacDieSnd.play();
+                break;
+            default:
+                break;      // Do nothing (for now)
+        }
+
+        //console.log(map)
+	}
+
+	// End of JavaScript
+</script>
+</html>

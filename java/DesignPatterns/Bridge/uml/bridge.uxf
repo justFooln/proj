@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>640</y>
+      <w>160</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>::Bridge
+--
+--
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>710</x>
+      <y>340</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>::DVDDevice
+--
+--
++DVDDevice(newDeviceState, 
+		newMaxSetting): ctor
++buttonFivePressed(): void
++buttonSixPressed(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>530</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>::DVDRemote
+--
+-play = true: boolean
+--
++DVDRemote(EntertainmentDevice 
+		newDevice): ctor
++buttonNinePressed(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>110</y>
+      <w>180</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>/::EntertainmentDevice/
+--
++deviceState: int
++maxSetting: int
++volumeLevel = 0: int
+--
+/+buttonFivePressed(): void/
+/+buttonSixPressed(): void/
++buttonSevenPressed(): void
++buttonEightPressed(): void
++deviceFeedback(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>90</y>
+      <w>330</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>/::RemoteButton/
+--
+-theDevice: EntertainmentDevice
+--
++RemoteButton(EntertainmentDevice newDevice): ctor
++buttonFivePressed(): void
++buttonSixPressed(): void
++deviceFeedback(): void
+/+buttonNinePressed(): void/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>460</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>::TVDevice
+--
+--
++TVDevice(newDeviceState, 
+		newMaxSetting): ctor
++buttonFivePressed(): void
++buttonSixPressed(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>340</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>::TVRemoteMute
+--
+--
++TVRemoteMute(EntertainmentDevice
+		newDevice): ctor
++buttonNinePressed(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>440</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>::TVRemotePause
+--
+--
++TVRemotePause(EntertainmentDevice 
+		newDevice): ctor
++buttonNinePressed(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>210</y>
+      <w>30</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>210</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>210</y>
+      <w>30</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>250</y>
+      <w>30</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>250</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>110</y>
+      <w>260</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>40</x>
+      <y>50</y>
+      <w>860</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>Bridge Pattern
+--
+lt=..
+bg=none</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>370</x>
+      <y>250</y>
+      <w>270</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>EntertainmentDevice-&gt;buttonFivePressed()
+EntertainmentDevice-&gt;buttonSixPressed()
+EntertainmentDevice-&gt;deviceFeedback()
+
+bg=#FCF3CF
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>400</x>
+      <y>180</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>190</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

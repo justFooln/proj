@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Application/application.iml" filepath="$PROJECT_DIR$/Application/application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptoutilities/cryptoutilities.iml" filepath="$PROJECT_DIR$/cryptoutilities/cryptoutilities.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enigma.iml" filepath="$PROJECT_DIR$/enigma.iml" />
+      <module fileurl="file://$PROJECT_DIR$/machine/machine.iml" filepath="$PROJECT_DIR$/machine/machine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/texthandling/texthandling.iml" filepath="$PROJECT_DIR$/texthandling/texthandling.iml" />
+    </modules>
+  </component>
+</project>
