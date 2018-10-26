@@ -1,0 +1,22 @@
+# Only add entries that extend  or override .gitignore_global.
+
+########################### JetBrains IDEs ####################  (see .gitignore_global)
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# Never save per JetBrains recommendation
+
+# Don't save, set as IDEA preference files
+
+# Don't save these files, they are regenerated on project open
+
+# Don't save files created by some vendor plugins
+
+# Don't save general jar files (Override locally for Gradle files)
+!gradle-wrapper.jar
+
+### Gradle template
+**/.gradle
+**/build/
+gradle-app.setting  # Ignore Gradle GUI config
+
+################### OS generated files #######################  (see .gitignore_global)

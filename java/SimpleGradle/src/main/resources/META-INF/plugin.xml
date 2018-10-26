@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>com.jetbrains.simplegradle</id>
+    <name>my_plugin</name>
+    <version>0.0.1</version>
+    <vendor email="dummy" url="dummy">dummy</vendor>
+
+    <description><![CDATA[
+      Simple Gradle Plugin.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Release 0.0.1: Initial release.<br>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="162"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+    </actions>
+
+    <project-components>
+        <component>
+            <implementation-class>com.jetbrains.simplegradle.ConditionalStringReverser</implementation-class>
+        </component>
+    </project-components>
+
+
+</idea-plugin>
