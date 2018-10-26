@@ -8,7 +8,7 @@ StringReversal is an Intention Action plugin for the IntelliJ Platform. The plug
 
 ## Structure
 The plugin was developed using the [IntelliJ Platform SDK](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/using_dev_kit.html). The main components are:
-#### The [Plugin Configuration File](../resources/META-INF/plugin.xml) 
+#### The [Plugin Configuration File](../main/resources/META-INF/plugin.xml) 
 This XML file provides meta information to the IntelliJ application about the StringReversal plugin, such defining the `intentionAction` and `project-component`.
 ```xml
   <extensions defaultExtensionNs="com.intellij">
@@ -23,7 +23,7 @@ This XML file provides meta information to the IntelliJ application about the St
 * Like an action description, the `className` tag must be a fully qualified class name for IntelliJ to identify the class. 
 * The `category` tag specifies the language (Java) and function (String) categories for listing in the IntelliJ Intentions Preferences Panel.
 * The `descriptionDirectoryName` tag specifies the name of the directory that holds the Intention Action description files.
-#### The [ConditionalStringReverser.java](../src/com/kineticsnw/StringReversal/ConditionalStringReverser.java) Class
+#### The [ConditionalStringReverser.java](../main/java/src/com/kineticsnw/StringReversal/ConditionalStringReverser.java) Class
 This class implements the `IntentionAction` class, the basis for Intention Actions. The `ConditionalStringReverser` class provides the string-reversing functionality by means of callback methods to the IntelliJ application. Of particular importance:
 * `ConditionalStringReverser.isAvailable()` is called when IntelliJ is assembling the list of Intention Actions to display to the user. It is the responsibility of this method to determine if the StringReversal Intention Action is applicable to the current caret position. If not, IntelliJ will not include StringReversal in the list of Intention Actions. 
 * `ConditionalStringReverser.invoke()` is called when the user selects StringReversal from the list of Intention Actions. It is the responsibility of this method to actually make the changes to a Java string literal by reversing it within the IntelliJ representation of the Java source file. 

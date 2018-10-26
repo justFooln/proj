@@ -21,7 +21,7 @@ Demo plugin to show how intention action plugins are developed
     ]]>
   </change-notes>
 
-  <idea-version since-build="173.0"/>
+  <idea-version since-build="2018.2.4"/>
 
   <depends>com.intellij.modules.java</depends>
 

@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    // Fully qualified ID of this plugin; maps to <id> in plugin.xml
+    id "com.kineticsnw.StringReversal.ConditionalStringReversal" version "0.2"
+}
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+group 'com.kineticsnw'
+
+intellij {
+    // Name for the plugin jar file (same as project name in Devkit)
+    pluginName 'StringReversal'
+    // The version of the IDEA distribution that should be used as a dependency
+    // Maps to <idea-version since-build=""/> in plugin.xml
+    // For a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
+    version 'IC-2018.4'
+    // Patch plugin.xml with since and until build values
+    // patchPluginXml.sinceBuild and patchPluginXml.untilBuild will be used (or their default values if none set).
+    updateSinceUntilBuild = 'true'
+    // Do not download sources while initializing Gradle build
+    downloadSources = 'false'
+    // Define custom sandbox name
+    sandboxDirectory = "$project.buildDir/sr_sandbox"
+}
+
+idea {
+    module {
+        sourceDirs += file('build/generated/source/proto/main/java')
+        generatedSourceDirs += file('build/generated/source/proto/main/java')
+    }
+}
+
+patchPluginXml {
+    version = project.version
+    sinceBuild = 'IC-2018.4'
+    description = 'Putting the cursor in a string literal gives users the option to reverse the string content'
+    changeNotes = 'Convert to Gradle'
+    pluginXmlFiles = 'plugin.xml'
+    destinationDir = '${project.buildDir}/patchedPluginXmlFiles'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/'
+        }
+        resources {
+            srcDir 'resources/'
+        }
+    }
+}
+
