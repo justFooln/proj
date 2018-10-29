@@ -5,55 +5,89 @@ buildscript {
 }
 
 plugins {
-    // Fully qualified ID of this plugin; maps to <id> in plugin.xml
-    id "com.kineticsnw.StringReversal.ConditionalStringReversal" version "0.2"
+    // JetBrains IDEA core plugin for Gradle. Generates files that are used by Intellij IDEA IDE,
+    // thus making it possible to import the project into IDEA.
+    // https://docs.gradle.org/current/userguide/idea_plugin.html#idea_plugin
+    id 'idea'
+    // JetBrains plugin for building IDEA projects with Gradle
+    // https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md
+    id 'org.jetbrains.intellij' version '0.3.11'
+    // Gradle Java core plugin. Adds Java compilation, testing and bundling capabilities to a project.
+    // https://docs.gradle.org/current/userguide/java_plugin.html#java_plugin
+    id 'java'
 }
-
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
 
-group 'com.kineticsnw'
+
+// Package base for the IDEA project - there may be more than one package in a project
+group 'com.kineticsnw.StringReversal'
+// Version of the IDEA plugin
+version '0.2'
+
 
 intellij {
     // Name for the plugin jar file (same as project name in Devkit)
     pluginName 'StringReversal'
+
     // The version of the IDEA distribution that should be used as a dependency
     // Maps to <idea-version since-build=""/> in plugin.xml
     // For a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
-    version 'IC-2018.4'
+    // Commented out because intellij.version and intellij.localPath should not be specified at the same time.
+    // version 'IC-2018.2.4'
+
+    // The path to locally installed IDEA distribution that should be used as a dependency. 
+    // note the IntelliJ version on this path must match format specified in patchPluginXML.sinceBuild
+    localPath = '/Applications/IntelliJ IDEA 2018.3 CE EAP.app'
+    
     // Patch plugin.xml with since and until build values
     // patchPluginXml.sinceBuild and patchPluginXml.untilBuild will be used (or their default values if none set).
     updateSinceUntilBuild = 'true'
+
+    // The user-defined value from patchPluginXml.sinceBuild 
+    // (or its default value) will be used as a since, and an "open" until value.
+    sameSinceUntilBuild = 'true'
+    
     // Do not download sources while initializing Gradle build
     downloadSources = 'false'
+    
     // Define custom sandbox name
     sandboxDirectory = "$project.buildDir/sr_sandbox"
 }
 
+// 
 idea {
+    // Enables fine-tuning module details
     module {
-        sourceDirs += file('build/generated/source/proto/main/java')
-        generatedSourceDirs += file('build/generated/source/proto/main/java')
+        sourceDirs
+        resourceDirs
     }
 }
 
-patchPluginXml {
-    version = project.version
-    sinceBuild = 'IC-2018.4'
-    description = 'Putting the cursor in a string literal gives users the option to reverse the string content'
-    changeNotes = 'Convert to Gradle'
-    pluginXmlFiles = 'plugin.xml'
-    destinationDir = '${project.buildDir}/patchedPluginXmlFiles'
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
+// Patch plugin.xml with the following values
+patchPluginXml {
+    version = project.version           // a value for the <version> tag
+    sinceBuild = 'IC-182.4505.22'          // the since-build attribute of the <idea-version> tag
+    untilBuild = 'IC-183.3975.18'            // the until-build attribute of the <idea-version> tag              
+    pluginDescription = 'Putting the cursor in a string literal gives users the option to reverse the string content'
+    changeNotes = 'Convert to Gradle'       // for the <change-notes> tag.
+//    pluginXmlFiles = 'plugin.xml'           // a collection of xml files to patch (in this case just 1)
+//    destinationDir = '${project.buildDir}/patchedPluginXmlFiles'    //  a directory to store patched xml files.
+}
+
+// Defines the directories to be compiled
 sourceSets {
     main {
         java {
-            srcDirs 'src/'
+            srcDirs 'main/java/src/'
         }
         resources {
-            srcDir 'resources/'
+            srcDir 'main/resources/'
         }
     }
 }
