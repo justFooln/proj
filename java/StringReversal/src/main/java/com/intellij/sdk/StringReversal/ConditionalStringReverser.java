@@ -3,7 +3,7 @@
 *    See the LICENSE.TXT file for the specific language governing permissions and limitations.
 */
 
-package com.kineticsnw.StringReversal;
+package com.intellij.sdk.StringReversal;
 
 import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction;

@@ -30,7 +30,7 @@ Demo plugin to show how intention action plugins are developed
   -->
   <extensions defaultExtensionNs="com.intellij">
     <intentionAction>
-      <className>com.kineticsnw.StringReversal.ConditionalStringReverser</className>
+      <className>com.intellij.sdk.StringReversal.ConditionalStringReverser</className>
       <category>Java/Strings</category>
       <descriptionDirectoryName>ConditionalStringReverser</descriptionDirectoryName>
     </intentionAction>
@@ -41,7 +41,7 @@ Demo plugin to show how intention action plugins are developed
   -->
   <project-components>
     <component>
-      <implementation-class>com.kineticsnw.StringReversal.ConditionalStringReverser</implementation-class>
+      <implementation-class>com.intellij.sdk.StringReversal.ConditionalStringReverser</implementation-class>
     </component>
   </project-components>
 

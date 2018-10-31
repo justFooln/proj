@@ -4,7 +4,7 @@ StringReversal Quick Start Guide
 
 StringReversal is an Intention Action plugin for the IntelliJ Platform. The plugin provides IntelliJ users with the ability to reverse the contents of a literal string. The plugin's functionality is exposed when the editor caret is placed within a literal string and the user presses the Alt+Enter keys:
 
-![image](intentionImg.jpg "StringReversal enabled in intentions list")
+![image](img/intentionImg.jpg "StringReversal enabled in intentions list")
 
 ## Structure
 The plugin was developed using the [IntelliJ Platform SDK](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/using_dev_kit.html). The main components are:
@@ -13,7 +13,7 @@ This XML file provides meta information to the IntelliJ application about the St
 ```xml
   <extensions defaultExtensionNs="com.intellij">
     <intentionAction>
-      <className>com.kineticsnw.StringReversal.ConditionalStringReverser</className>
+      <className>com.intellij.sdk.StringReversal.ConditionalStringReverser</className>
       <category>Java/Strings</category>
       <descriptionDirectoryName>ConditionalStringReverser</descriptionDirectoryName>
     </intentionAction>
