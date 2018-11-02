@@ -1,6 +1,7 @@
 ///////////////// Generic Gradle Stuff ///////////////////
 
 buildscript {
+    
 }
 
 plugins {
@@ -35,38 +36,67 @@ dependencies {
 //  https://docs.gradle.org/current/userguide/writing_build_scripts.html#sec:standard_project_properties
 project.group 'com.kineticsnw.StringReversal'
 project.version '0.2'
-// project.buildDir = "$project.projectDir/build"
+
+task printProperties {
+    doLast {
+        println project.projectDir
+        println project.buildDir
+        println project.group
+        println project.version
+        println sourceSets.main.allSource.srcDirs
+        println sourceSets.test.allSource.srcDirs
+        println intellij.sandboxDirectory
+        println patchPluginXml.destinationDir
+    }
+}
 
 ////////////////////////// Gradle Core Java Plugin Stuff ///////////////////////
 
 // For default Java plugin project layout (directory structure): https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_project_layout
 // Custom project layout for this plugin (just for documentation, layout is actually default.)
-sourceSets {
-    main {
-        java {
-            srcDirs 'src/main/java'
+//sourceSets.main.java.srcDir 'src/main/java'
+//sourceSets.main.resources.srcDir 'src/main/resources'
+//sourceSets.test.java.srcDir 'src/test/java'
+//sourceSets.test.resources.srcDir 'src/test/resources'
 
-        }
-        resources {
-            srcDirs 'src/main/resources'
-        }
-    }
-    test {
-        java {
-            srcDirs 'src/test/java'
-        }
-        resources {
-            srcDirs 'src/test/resources'
-        }
-    }
 
-}
+//sourceSets {
+//    main {
+//        java.srcDir 'src/main/java'
+//        resources.srcDir 'src/main/resources'
+//    }
+//    test {
+//        java.srcDir project.file('src/test/java')
+//        resources.srcDir project.file('src/test/resources')
+//    }
+//}
+
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs 'src/main/java'
+//
+//        }
+//        resources {
+//            srcDirs 'src/main/resources'
+//        }
+//    }
+//    test {
+//        java {
+//            srcDirs 'src/test/java'
+//        }
+//        resources {
+//            srcDirs 'src/test/resources'
+//        }
+//    }
+//}
+
 
 // Build the java docs into the correct output directory
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html
 task makeJavaDoc(type: Javadoc) {
     source = sourceSets.main.allJava
-    destinationDir = file('/docs/javadoc')
+    destinationDir = project.file('/docs/javadoc')
 }
 
 
@@ -75,10 +105,10 @@ task makeJavaDoc(type: Javadoc) {
 // idea Task generates all IDEA configuration files
 idea {
     // Enables fine-tuning module details - below is actually the default
-    module {
-        sourceDirs
-        resourceDirs
-    }
+//    module {
+//        sourceDirs
+//        resourceDirs
+//    }
 }
 
 
@@ -112,6 +142,7 @@ intellij {
     
     // Define custom sandbox name
     sandboxDirectory = "$project.buildDir/sr_sandbox"
+    
 }
 
 // Patch the plugin.xml file with the following values
