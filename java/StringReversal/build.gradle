@@ -34,7 +34,7 @@ dependencies {
 
 // Set Project properties
 //  https://docs.gradle.org/current/userguide/writing_build_scripts.html#sec:standard_project_properties
-project.group 'com.kineticsnw.StringReversal'
+project.group 'com.jetbrains.sdk.StringReversal'
 project.version '0.2'
 
 task printProperties {
@@ -54,49 +54,32 @@ task printProperties {
 
 // For default Java plugin project layout (directory structure): https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_project_layout
 // Custom project layout for this plugin (just for documentation, layout is actually default.)
-//sourceSets.main.java.srcDir 'src/main/java'
-//sourceSets.main.resources.srcDir 'src/main/resources'
-//sourceSets.test.java.srcDir 'src/test/java'
-//sourceSets.test.resources.srcDir 'src/test/resources'
-
-
-//sourceSets {
-//    main {
-//        java.srcDir 'src/main/java'
-//        resources.srcDir 'src/main/resources'
-//    }
-//    test {
-//        java.srcDir project.file('src/test/java')
-//        resources.srcDir project.file('src/test/resources')
-//    }
-//}
-
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs 'src/main/java'
-//
-//        }
-//        resources {
-//            srcDirs 'src/main/resources'
-//        }
-//    }
-//    test {
-//        java {
-//            srcDirs 'src/test/java'
-//        }
-//        resources {
-//            srcDirs 'src/test/resources'
-//        }
-//    }
-//}
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java/'
+        }
+        resources {
+            srcDir 'src/main/resources/'
+        }
+    }
+    // No test content. Including the directories seems to stop the build
+    //    test {                          
+    //        java {
+    //            srcDirs 'src/test/java'
+    //        }
+    //        resources {
+    //            srcDirs 'src/test/resources'
+    //        }
+    //    }
+}
 
 
 // Build the java docs into the correct output directory
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html
 task makeJavaDoc(type: Javadoc) {
     source = sourceSets.main.allJava
-    destinationDir = project.file('/docs/javadoc')
+    destinationDir = project.file('docs/javadoc')
 }
 
 
@@ -131,17 +114,17 @@ intellij {
     
     // Patch plugin.xml with since and until build values
     // patchPluginXml.sinceBuild and patchPluginXml.untilBuild will be used (or their default values if none set).
-    updateSinceUntilBuild = 'true'
+//    updateSinceUntilBuild = 'true'
 
     // The user-defined value from patchPluginXml.sinceBuild 
     // (or its default value) will be used as a since, and an "open" until value.
-    sameSinceUntilBuild = 'false'
+//    sameSinceUntilBuild = 'false'
     
     // Do not download sources while initializing Gradle build
-    downloadSources = 'false'
+//    downloadSources = 'false'
     
     // Define custom sandbox name
-    sandboxDirectory = "$project.buildDir/sr_sandbox"
+//    sandboxDirectory = "$project.buildDir/sr_sandbox"
     
 }
 
@@ -151,11 +134,12 @@ patchPluginXml {
     sinceBuild = 'IC-182.4505.22'           // <idea-version> tag since-build attribute 
     untilBuild = 'IC-183.3975.18'           // <idea-version> tag until-build attribute               
     pluginDescription = 'Putting the cursor in a string literal gives users the option to reverse the string content'
-    changeNotes = 'Convert to Gradle'       // <change-notes> tag value
+    // <change-notes> tag value
+    changeNotes = '0.1 Under development. 0.2 Convert to gradle project.'       
     // The collection of plugin.xml files to patch (in this case just 1)
     pluginXmlFiles = ['plugin.xml']         
     // the directory to store patched xml files
-    destinationDir = "$project.buildDir/patchedPluginXmlFiles"
+//    destinationDir = "$project.buildDir/sr-patchedPluginXmlFiles"
 }
 
 

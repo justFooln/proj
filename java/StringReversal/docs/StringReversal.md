@@ -13,7 +13,7 @@ This XML file provides meta information to the IntelliJ application about the St
 ```xml
   <extensions defaultExtensionNs="com.intellij">
     <intentionAction>
-      <className>com.intellij.sdk.StringReversal.ConditionalStringReverser</className>
+      <className>ConditionalStringReverser</className>
       <category>Java/Strings</category>
       <descriptionDirectoryName>ConditionalStringReverser</descriptionDirectoryName>
     </intentionAction>
