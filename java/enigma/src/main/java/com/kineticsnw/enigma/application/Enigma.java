@@ -1,7 +1,7 @@
 package com.kineticsnw.enigma.application;
 
 import com.kineticsnw.enigma.cryptoutilities.AlphaList;
-import com.kineticsnw.enigma.engine.machine.EngineCONST;
+import com.kineticsnw.enigma.machine.engine.EngineCONST;
 
 public class Enigma {
 
