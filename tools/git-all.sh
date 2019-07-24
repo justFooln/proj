@@ -2,7 +2,7 @@
 # Executes passed command for each root in repository
 
 IDE_ROOT="$(cd "`dirname "$0"`"; pwd)"
-ROOTS=("/" "/contrib" "/community" "/community/android" "/community/android/tools-base" "/CIDR")
+ROOTS=("/" "/android" "/android/tools-base")
 
 if [ -t 1 ] ; then
   RED='\033[0;31m'
