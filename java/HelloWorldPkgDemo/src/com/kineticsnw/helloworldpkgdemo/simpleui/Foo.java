@@ -1,11 +1,7 @@
-// 0 Line 
-// 1 Line 
-// 2 Line 
-// 3 Line 
-// 4 Line 
-// 5 Line 
-// 6 Line 
-// 7 Line 
-// 8 Line 
-public class Foo {
+// Editor Line 0
+// Editor Line 1
+// Editor Line 2
+// Editor Line 3 - This is a long line  This is a long line  This is a long line  This is a long line  This is a long line  This is a long line.
+// Editor Line 4
+public class Foo {     // Editor Line 5
 }
