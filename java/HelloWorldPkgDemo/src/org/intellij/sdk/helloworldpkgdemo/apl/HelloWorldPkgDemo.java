@@ -1,6 +1,6 @@
-package com.kineticsnw.helloworldpkgdemo.apl;
+package org.intellij.sdk.helloworldpkgdemo.apl;
 
-import com.kineticsnw.helloworldpkgdemo.simpleui.ShowIt;
+import org.intellij.sdk.helloworldpkgdemo.simpleui.ShowIt;
 
 /*  @class Performs the demo of using packages. */
 public class HelloWorldPkgDemo {

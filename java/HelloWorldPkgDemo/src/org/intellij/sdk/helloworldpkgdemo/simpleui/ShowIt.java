@@ -1,7 +1,7 @@
-package com.kineticsnw.helloworldpkgdemo.simpleui;
-
+package org.intellij.sdk.helloworldpkgdemo.simpleui;
 
 import java.util.Date;
+
 public class ShowIt {
 
   public ShowIt() {
