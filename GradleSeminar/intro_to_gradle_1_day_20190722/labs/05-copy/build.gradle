@@ -1,0 +1,47 @@
+/*
+    1. Add a copy task that copies all `*.txt` files under `content` and all files under images into `build/texts` (observe the preserved hierarchy).
+    2. Add a section to the copy task from 1. that also copies all `*.dat` files under `content` and renames them to `*.data`.
+       Hint: The rename regex is `"(.*)\\.dat"`.
+*/
+// This solution is in groovy dialect
+
+// This syntax only works for plugins registered at plugins.gradle.org
+plugins {
+  id 'base'
+  id "com.github.johnrengelman.plugin-shadow" version "2.0.3"
+}
+/* Otherwise, for plugins not registered at plugins.gradle.org
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.github.jengelman.gradle.plugins:shadow:2.0.3"
+  }
+}
+apply plugin: "com.github.johnrengelman.plugin-shadow"
+*/
+
+task copyFiles(type: Copy) {
+  // see github repo github.com/kousen/Making-Java-Groovy/.../groovybaseball/build.gradle
+  onlyIf { !file("myfile.txt").exists() }
+  into("$buildDir/texts")
+  from('content') {
+    include('**/*.txt')
+    // Part 2 of exercise
+    include('**/*.dat')
+    rename '(.*)\\.dat', '$1.data'
+  }
+  from('images')
+}
+
+// Create zip file in default build/distributions
+task zipFiles(type: Zip) {
+  from('content')
+}
+
+task myZip(type: Zip) {
+  destinationDirectory = file("$buildDir/specialZips")
+}

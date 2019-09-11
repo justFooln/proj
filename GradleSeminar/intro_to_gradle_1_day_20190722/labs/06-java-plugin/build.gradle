@@ -1,0 +1,64 @@
+/*
+1. Execute `gradle tasks` to see which tasks are available.
+2. Build the Jar archive and try to find it.
+3. Configure the `jar` task to add an entry named `Implementation-Version` to the Jar manifest. Set the entry's value to the project version.
+4. Edit the source code of a test to make it fail, execute the project's tests, and check the HTML test report.
+5. Configure the `test` task to run tests in parallel (hint: use the `maxParallelForks` setting).
+6. Move the sources from `src/main/java` to `java`, and reconfigure the `main` source set accordingly.
+*/
+
+plugins {
+  id 'java'
+}
+
+group = "my.company"
+description = "My Java Library"
+version = "1.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "commons-collections:commons-collections:3.2"
+    testImplementation "junit:junit:4.11"
+}
+
+// https://docs.gradle.org/current/userguide/building_java_projects.html#sec:custom_java_source_set_paths
+// This sourceSets declaration is actually redundant because everything under srcDir
+// is included anyway.
+// Declaring source files exclusively: srcDirs = ['aDir/someOtherDir']
+// Declaring source files additively:  srcDir 'aDir/someOtherDir'
+sourceSets {
+  main {
+    java {
+      srcDir 'org/gradle'
+    }
+  }
+  test {
+    java {
+      srcDir 'org/gradle'
+    }
+  }
+}
+
+// https://docs.gradle.org/current/userguide/working_with_files.html#sec:unpacking_archives_example
+task unjar(type: Copy) {
+  from zipTree("$buildDir/libs/06-java-plugin-1.0.jar")
+  into "$buildDir/expanded"
+}
+
+// https://docs.gradle.org/current/userguide/java_testing.html#sec:java_testing_basics
+// https://docs.gradle.org/current/userguide/java_testing.html#test_reporting
+// see git spockframework settings.gradle file for test setup
+test {
+  // Reasonable first cut at the # of forks to use.
+  maxParallelForks = (int) (Runtime.runtime.availableProcessors()/2.0) + 1
+}
+
+jar {
+  // https://docs.gradle.org/current/userguide/building_java_projects.html#sec:jar_manifest
+  manifest {
+    attributes("Implementation-Version": project.version)
+  }
+}
